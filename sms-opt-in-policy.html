@@ -20,6 +20,13 @@
     .kbd { font-family: Consolas, "Courier New", monospace; }
     .note { background:#f0f7ff; border-left:4px solid var(--brand); padding:10px 12px; border-radius:6px; }
     .small { font-size: 13px; }
+    .demo { border:1px dashed #cbd5e1; padding:14px; border-radius:8px; background:#fafafa; margin-top:10px; }
+    .row { display:flex; gap:10px; align-items:center; }
+    .row input[type="tel"] { flex: 1; padding:10px; border:1px solid #d1d5db; border-radius:6px; }
+    .row button { padding:10px 14px; border:0; border-radius:6px; background:var(--brand); color:#fff; cursor:not-allowed; opacity:.6; }
+    .row button.enabled { cursor:pointer; opacity:1; }
+    label { display:block; margin:8px 0; }
+    .legal { font-size:12px; color:#444; }
   </style>
 </head>
 <body>
@@ -63,6 +70,43 @@
     <div class="note small">
       By checking this box and submitting, you agree Cal Coast Refrigeration may send you text messages about your service and account (frequency varies). Msg&amp;data rates may apply. Reply STOP to opt out, HELP for help. Consent not a condition of purchase (for marketing).
     </div>
+
+    <!-- LIVE DEMO: Example Opt-In Checkbox + Disclosures (for Twilio review) -->
+    <div class="demo" aria-labelledby="demoTitle">
+      <strong id="demoTitle">Sample Opt-In Form (Demo)</strong>
+      <p class="small muted">This demo illustrates our consent capture. It does not submit data.</p>
+      <form onsubmit="return false" novalidate>
+        <div class="row" style="margin:8px 0 6px;">
+          <input type="tel" inputmode="tel" aria-label="Mobile number" placeholder="Mobile number (e.g., 805-555-0123)" />
+          <button type="submit" id="demoSubmit" disabled>Submit</button>
+        </div>
+
+        <label>
+          <input type="checkbox" id="optOperational" />
+          I agree to receive <strong>operational texts</strong> from Cal Coast Refrigeration about my service, appointments, and account. <span class="legal">Msg&amp;data rates may apply. Frequency varies by activity. Reply STOP to opt out, HELP for help.</span>
+        </label>
+
+        <label>
+          <input type="checkbox" id="optMarketing" />
+          I agree to receive <strong>marketing/promotional texts</strong> from Cal Coast Refrigeration. <span class="legal">Msg&amp;data rates may apply. Frequency varies. Reply STOP to opt out, HELP for help. <em>Consent is not a condition of purchase.</em></span>
+        </label>
+      </form>
+    </div>
+    <script>
+      (function(){
+        const op = document.getElementById('optOperational');
+        const mk = document.getElementById('optMarketing');
+        const btn = document.getElementById('demoSubmit');
+        function toggle(){ 
+          const anyChecked = (op && op.checked) || (mk && mk.checked);
+          btn.disabled = !anyChecked;
+          btn.classList.toggle('enabled', anyChecked);
+        }
+        if(op) op.addEventListener('change', toggle);
+        if(mk) mk.addEventListener('change', toggle);
+      })();
+    </script>
+    <!-- /DEMO -->
   </section>
 
   <section>
@@ -119,7 +163,6 @@
   <section>
     <h2>Privacy</h2>
     <p>Your mobile number and preferences are handled per our Privacy Policy. We do not sell your mobile number. We share it only with service providers needed to deliver messages, subject to contractual safeguards.</p>
-    <p class="small muted">Link: <a href="/privacy.html">Privacy Policy</a> (update this link if your privacy page lives elsewhere).</p>
   </section>
 
   <section>
@@ -132,17 +175,6 @@
   </section>
 
   <section>
-    <h2>Sample Auto-Responses</h2>
-    <p class="small muted">You can configure these in your messaging platform for compliance and user experience.</p>
-    <ul>
-      <li><strong>Welcome (Operational):</strong> “Cal Coast Refrigeration Alerts: updates about jobs/service. Msg&amp;data rates may apply. Freq varies. Reply STOP to opt out, HELP for help. admin@calcoastrefrigeration.com, (805) 928-1778.”</li>
-      <li><strong>Welcome (Marketing):</strong> “Cal Coast Refrigeration Offers: marketing texts. Msg&amp;data rates may apply. Freq varies. Reply STOP to opt out, HELP for help. Consent not a condition of purchase.”</li>
-      <li><strong>STOP Confirmation:</strong> “You’re opted out and will no longer receive texts from Cal Coast Refrigeration. Reply START to re-subscribe. For help, reply HELP or contact admin@calcoastrefrigeration.com.”</li>
-      <li><strong>HELP Reply:</strong> “Cal Coast Refrigeration SMS support: This program provides service/dispatch updates (and promos if opted in). Msg&amp;data rates may apply. Reply STOP to opt out. Support: admin@calcoastrefrigeration.com, (805) 928-1778.”</li>
-    </ul>
-  </section>
-
-  <section>
     <h2>Compliance</h2>
     <ul>
       <li>We follow carrier/industry guidelines for A2P messaging, including clear opt-in, STOP/HELP handling, sender identification, and content restrictions.</li>
@@ -151,9 +183,9 @@
   </section>
 
   <!-- Notes for reviewers:
-    - This page includes: program description, opt-in methods, first-message disclosures,
-      STOP/HELP handling (with synonyms), frequency, charges, contact info, and links to Privacy.
-    - Suitable for Twilio Toll-Free Messaging Verification submissions (Console: Regulatory Information).
+    - Includes: program description, opt-in methods, first-message disclosures, STOP/HELP handling (with synonyms),
+      frequency, charges, contact info, and a live checkbox demo with compliant language.
+    - Suitable for Twilio Toll-Free Messaging Verification submissions.
   -->
 </body>
 </html>
