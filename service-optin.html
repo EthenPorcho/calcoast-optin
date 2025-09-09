@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Service Scheduling – SMS Consent | Cal Coast Refrigeration</title>
+  <meta name="description" content="Schedule service and manage SMS consent for Cal Coast Refrigeration." />
+  <style>
+    :root { --brand:#0078d4; }
+    body { font-family: Arial, sans-serif; background:#f0f2f5; color:#222; margin:0; }
+    .wrap { max-width:880px; margin:40px auto; padding:0 20px; }
+    header { text-align:left; margin-bottom:10px; }
+    h1 { color:var(--brand); margin:0 0 6px; font-size:28px; }
+    .card { background:#fff; border:1px solid #e5e7eb; border-radius:12px; padding:22px; margin:16px 0; }
+    label { display:block; margin:8px 0 6px; font-weight:600; }
+    input[type="text"], input[type="tel"], input[type="email"], input[type="datetime-local"], textarea { width:100%; max-width:560px; padding:10px; border:1px solid #d1d5db; border-radius:8px; }
+    .row { display:flex; gap:14px; align-items:flex-start; flex-wrap:wrap; }
+    .disclosures { font-size:12px; color:#444; margin-top:10px; }
+    .btn { background:var(--brand); color:#fff; border:0; padding:12px 18px; border-radius:8px; cursor:not-allowed; opacity:.6; }
+    .btn.enabled { cursor:pointer; opacity:1; }
+    .muted { color:#666; font-size:13px; }
+    .kbd { font-family: Consolas, "Courier New", monospace; }
+    .checkbox { display:flex; align-items:flex-start; gap:10px; margin:12px 0; }
+    .checkbox input { margin-top:3px; }
+    .hint { font-size:12px; color:#555; }
+    .error { color:#b00020; font-size:12px; margin-top:6px; display:none; }
+    .success { background:#ecfdf5; border:1px solid #10b981; color:#065f46; padding:12px; border-radius:8px; margin-top:16px; display:none; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <h1>Schedule Service & SMS Consent</h1>
+      <p class="muted">Provide your details and choose if you want to receive text updates.</p>
+    </header>
+
+    <form id="optinForm" class="card" novalidate>
+      <div class="row">
+        <div>
+          <label for="fullName">Full name</label>
+          <input id="fullName" name="fullName" type="text" placeholder="Jane Smith" required />
+        </div>
+        <div>
+          <label for="mobile">Mobile number</label>
+          <input id="mobile" name="mobile" type="tel" inputmode="tel" placeholder="805-555-0123" aria-describedby="mobileHint" required />
+          <div id="mobileHint" class="hint">US or CA mobile. Example: 805-555-0123</div>
+          <div id="mobileErr" class="error">Enter a valid mobile number.</div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div>
+          <label for="email">Email (for invoice/notes)</label>
+          <input id="email" name="email" type="email" placeholder="you@example.com" />
+        </div>
+        <div>
+          <label for="when">Preferred date & time</label>
+          <input id="when" name="when" type="datetime-local" />
+        </div>
+      </div>
+
+      <label for="address">Service address</label>
+      <input id="address" name="address" type="text" placeholder="123 Main St, Santa Maria, CA" />
+
+      <label for="notes">Job notes (optional)</label>
+      <textarea id="notes" name="notes" rows="3" placeholder="Gate code, pet on site, unit access…"></textarea>
+
+      <!-- Honeypot to discourage bots -->
+      <input type="text" id="company" name="company" style="position:absolute;left:-9999px;" tabindex="-1" aria-hidden="true" autocomplete="off" />
+
+      <div class="checkbox">
+        <input id="optOperational" name="optOperational" type="checkbox" />
+        <label for="optOperational">
+          I agree to receive <strong>operational texts</strong> from Cal Coast Refrigeration about my service, appointments, and account.
+          <div class="disclosures">Msg&data rates may apply. Frequency varies by activity. <span class="kbd">Reply STOP to opt out, HELP for help.</span> See <a href="https://calcoastrefrigeration.com/privacy" target="_blank" rel="noopener">Privacy</a> & <a href="https://ethenporcho.github.io/calcoast-optin/terms-sms.html" target="_blank" rel="noopener">SMS Terms</a>. I confirm I am the subscriber or customary user of this number and 18+.</div>
+        </label>
+      </div>
+
+      <div class="checkbox">
+        <input id="optMarketing" name="optMarketing" type="checkbox" />
+        <label for="optMarketing">
+          I agree to receive <strong>marketing/promotional texts</strong> from Cal Coast Refrigeration.
+          <div class="disclosures">Msg&data rates may apply. Frequency varies. <span class="kbd">Reply STOP to opt out, HELP for help.</span> <em>Consent is not a condition of purchase.</em> See <a href="https://calcoastrefrigeration.com/privacy" target="_blank" rel="noopener">Privacy</a> & <a href="https://ethenporcho.github.io/calcoast-optin/terms-sms.html" target="_blank" rel="noopener">SMS Terms</a>.</div>
+        </label>
+      </div>
+
+      <button id="submitBtn" type="submit" class="btn" disabled>Submit</button>
+      <div id="formErr" class="error">Please enter a valid mobile number and check at least one consent box.</div>
+      <div id="ok" class="success">Thanks! Your request was received. You’ll get a confirmation text if you opted in.</div>
+
+      <p class="muted" style="margin-top:14px;">Questions? Email <a href="mailto:admin@calcoastrefrigeration.com">admin@calcoastrefrigeration.com</a> or call <a href="tel:+18059281778">(805) 928-1778</a>.</p>
+    </form>
+  </div>
+
+  <script>
+  (function () {
+    // ---- helpers ----
+    function normalizePhoneToE164(raw) {
+      const d = String(raw || "").replace(/\D/g, "");
+      if (d.length === 11 && d.startsWith("1")) return "+1" + d.slice(1);
+      if (d.length === 10) return "+1" + d;
+      return null;
+    }
+    function getUTM() {
+      const p = new URLSearchParams(location.search);
+      const keys = ["utm_source","utm_medium","utm_campaign","utm_content","utm_term"];
+      const o = {};
+      keys.forEach(k => { if (p.get(k)) o[k] = p.get(k); });
+      return o;
+    }
+
+    const phone = document.getElementById('mobile');
+    const ck1 = document.getElementById('optOperational');
+    const ck2 = document.getElementById('optMarketing');
+    const btn = document.getElementById('submitBtn');
+    const form = document.getElementById('optinForm');
+    const mobileErr = document.getElementById('mobileErr');
+    const formErr = document.getElementById('formErr');
+    const ok = document.getElementById('ok');
+
+    // 👉👉 Replace with your Power Automate HTTP trigger URL
+    const FLOW_URL = "YOUR_FLOW_URL_HERE";
+
+    function validPhone(v){ return !!normalizePhoneToE164(v); }
+
+    function toggle(){
+      const anyChecked = ck1.checked || ck2.checked;
+      const okPhone = validPhone(phone.value);
+      btn.disabled = !(anyChecked && okPhone);
+      btn.classList.toggle('enabled', anyChecked && okPhone);
+      mobileErr.style.display = okPhone ? 'none' : 'block';
+      formErr.style.display = 'none';
+    }
+    phone.addEventListener('input', toggle);
+    ck1.addEventListener('change', toggle);
+    ck2.addEventListener('change', toggle);
+    toggle();
+
+    form.addEventListener('submit', async function(e){
+      e.preventDefault();
+
+      const anyChecked = ck1.checked || ck2.checked;
+      const mobileE164 = normalizePhoneToE164(phone.value);
+      if(!anyChecked || !mobileE164){
+        formErr.style.display = 'block';
+        return;
+      }
+
+      // Payload (stable keys for Flow's Parse JSON)
+      const payload = {
+        program: {
+          operationalOptIn: ck1.checked,
+          marketingOptIn: ck2.checked,
+          frequencyDisclosure: "varies by activity",
+          stopHelpDisclosureShown: true
+        },
+        subscriber: {
+          fullName: document.getElementById('fullName').value || null,
+          mobile: mobileE164,
+          mobile_raw: phone.value || null,
+          email: document.getElementById('email').value || null,
+          address: document.getElementById('address').value || null
+        },
+        scheduling: {
+          preferredDateTime: document.getElementById('when').value || null,
+          notes: document.getElementById('notes').value || null
+        },
+        metadata: {
+          pageUrl: location.href,
+          referrer: document.referrer || null,
+          userAgent: navigator.userAgent,
+          submittedAtIso: new Date().toISOString(),
+          utm: getUTM()
+        }
+      };
+
+      btn.disabled = true;
+      btn.textContent = "Submitting…";
+
+      try {
+        const res = await fetch(FLOW_URL, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          mode: "cors",
+          body: JSON.stringify(payload)
+        });
+        if (!res.ok) throw new Error("Non-2xx response");
+
+        ok.style.display = 'block';
+        formErr.style.display = 'none';
+        form.reset();
+        toggle();
+        btn.textContent = "Submitted";
+      } catch (err) {
+        formErr.textContent = "Submission failed. Please try again or call (805) 928-1778.";
+        formErr.style.display = "block";
+        btn.textContent = "Submit";
+        btn.disabled = false;
+      }
+    });
+  })();
+  </script>
+</body>
+</html>
