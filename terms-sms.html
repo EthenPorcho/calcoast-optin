@@ -1,0 +1,251 @@
+<!-- =============================
+File: terms-sms.html
+Publish at: https://calcoastrefrigeration.com/terms-sms
+============================= -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SMS Terms & Conditions | Cal Coast Refrigeration</title>
+  <meta name="description" content="SMS text messaging terms and conditions for Cal Coast Refrigeration, including consent, message frequency, STOP/HELP commands, and contact information." />
+  <style>
+    :root { --brand:#0078d4; }
+    body { font-family: Arial, sans-serif; background:#f8f9fa; color:#222; margin:40px auto; max-width:800px; line-height:1.6; }
+    h1,h2,h3 { color:var(--brand); margin:0 0 12px; }
+    h1 { font-size:30px; }
+    h2 { font-size:22px; margin-top:26px; }
+    h3 { font-size:18px; margin-top:18px; }
+    section { background:#fff; border:1px solid #e5e7eb; border-radius:10px; padding:20px; margin:16px 0; }
+    a { color:var(--brand); }
+    .muted { color:#555; }
+    .kbd { font-family: Consolas, "Courier New", monospace; }
+    ul { margin: 8px 0 0 22px; }
+    .small { font-size:13px; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>SMS Terms & Conditions</h1>
+    <p class="muted small">Effective: September 2025</p>
+  </header>
+
+  <section>
+    <h2>Programs</h2>
+    <p>Cal Coast Refrigeration ("Cal Coast," "we," "us") operates two text messaging programs:</p>
+    <ul>
+      <li><strong>Cal Coast Operational Alerts</strong> (non‑marketing): appointment confirmations/updates, technician en‑route notices, job status changes, and service completion follow‑ups.</li>
+      <li><strong>Cal Coast Marketing Alerts</strong> (optional): occasional promotions and special offers. Marketing messages require separate, express consent.</li>
+    </ul>
+    <p class="small muted">Messages may be sent via SMS or MMS using application‑to‑person (A2P) messaging.</p>
+  </section>
+
+  <section>
+    <h2>Opt‑In & Consent</h2>
+    <p>You will only receive messages after you provide consent, such as by checking an unchecked box on a web form that includes the disclosures below, by texting a keyword (e.g., <span class="kbd">JOIN</span>) to our number, or by signing an agreement that includes the same disclosures.</p>
+    <ul>
+      <li>Program name & purpose (Operational Alerts or Marketing Alerts)</li>
+      <li><strong>Message & data rates may apply</strong></li>
+      <li>Message frequency: <strong>varies by activity</strong></li>
+      <li>How to opt out: <span class="kbd">Reply STOP to opt out</span></li>
+      <li>How to get help: <span class="kbd">Reply HELP for help</span></li>
+      <li>Links to our <a href="/privacy">Privacy Policy</a> and this page</li>
+      <li>Marketing only: <em>Consent is not a condition of purchase</em></li>
+      <li>You confirm you are the subscriber or customary user of the phone number and are 18+</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Message Frequency & Charges</h2>
+    <ul>
+      <li><strong>Frequency varies</strong> based on your activity and job events (typically 0–4 per job).</li>
+      <li><strong>Message and data rates may apply.</strong></li>
+      <li class="small muted">Carriers are not liable for delayed or undelivered messages.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Opt‑Out & Help</h2>
+    <ul>
+      <li>Opt out anytime by replying <span class="kbd">STOP</span>. We also honor: <span class="kbd">STOPALL</span>, <span class="kbd">UNSUBSCRIBE</span>, <span class="kbd">CANCEL</span>, <span class="kbd">END</span>, <span class="kbd">QUIT</span>. You may receive a one‑time confirmation of your opt‑out.</li>
+      <li>For assistance, reply <span class="kbd">HELP</span>. We’ll return program information and contact details.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Eligibility</h2>
+    <p>By opting in, you represent that you are the account holder or customary user of the mobile number provided and that you are at least 18 years old. Business and shared devices should only be used with the number owner’s permission.</p>
+  </section>
+
+  <section>
+    <h2>Privacy</h2>
+    <p>We handle your information per our <a href="/privacy">Privacy Policy</a>. We do not sell your mobile number. We may share it with service providers that help us deliver messages, subject to contractual safeguards.</p>
+  </section>
+
+  <section>
+    <h2>Contact</h2>
+    <p>Email: <a href="mailto:admin@calcoastrefrigeration.com">admin@calcoastrefrigeration.com</a><br> Phone: <a href="tel:+18059281778">(805) 928‑1778</a><br> Mail: 2363 Thompson Way # D, Santa Maria, CA 93455</p>
+  </section>
+
+  <section>
+    <h2>Changes</h2>
+    <p>We may update these SMS Terms from time to time. The “Effective” date above reflects the latest revision. Your continued participation constitutes acceptance of the revised terms.</p>
+  </section>
+</body>
+</html>
+
+
+<!-- =============================
+File: service-optin.html (live opt-in form)
+Publish at: https://calcoastrefrigeration.com/service-optin
+This is the page Twilio reviewers care about. It includes:
+- Unchecked checkboxes for Operational and Marketing
+- Disclosures inline with the CTA
+- Links to Privacy and SMS Terms
+============================= -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Service Scheduling – SMS Consent | Cal Coast Refrigeration</title>
+  <meta name="description" content="Schedule service and manage SMS consent for Cal Coast Refrigeration." />
+  <style>
+    :root { --brand:#0078d4; }
+    body { font-family: Arial, sans-serif; background:#f0f2f5; color:#222; margin:0; }
+    .wrap { max-width:880px; margin:40px auto; padding:0 20px; }
+    header { text-align:left; margin-bottom:10px; }
+    h1 { color:var(--brand); margin:0 0 6px; font-size:28px; }
+    .card { background:#fff; border:1px solid #e5e7eb; border-radius:12px; padding:22px; margin:16px 0; }
+    label { display:block; margin:8px 0 6px; font-weight:600; }
+    input[type="text"], input[type="tel"], input[type="email"], input[type="datetime-local"], textarea { width:100%; max-width:560px; padding:10px; border:1px solid #d1d5db; border-radius:8px; }
+    .row { display:flex; gap:14px; align-items:flex-start; flex-wrap:wrap; }
+    .disclosures { font-size:12px; color:#444; margin-top:10px; }
+    .btn { background:var(--brand); color:#fff; border:0; padding:12px 18px; border-radius:8px; cursor:not-allowed; opacity:.6; }
+    .btn.enabled { cursor:pointer; opacity:1; }
+    .muted { color:#666; font-size:13px; }
+    .kbd { font-family: Consolas, "Courier New", monospace; }
+    .checkbox { display:flex; align-items:flex-start; gap:10px; margin:12px 0; }
+    .checkbox input { margin-top:3px; }
+    .hint { font-size:12px; color:#555; }
+    .error { color:#b00020; font-size:12px; margin-top:6px; display:none; }
+    .success { background:#ecfdf5; border:1px solid #10b981; color:#065f46; padding:12px; border-radius:8px; margin-top:16px; display:none; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <h1>Schedule Service & SMS Consent</h1>
+      <p class="muted">Provide your details and choose if you want to receive text updates.</p>
+    </header>
+
+    <form id="optinForm" class="card" novalidate>
+      <div class="row">
+        <div>
+          <label for="fullName">Full name</label>
+          <input id="fullName" name="fullName" type="text" placeholder="Jane Smith" required />
+        </div>
+        <div>
+          <label for="mobile">Mobile number</label>
+          <input id="mobile" name="mobile" type="tel" inputmode="tel" placeholder="805-555-0123" aria-describedby="mobileHint" required />
+          <div id="mobileHint" class="hint">US or CA mobile. Example: 805‑555‑0123</div>
+          <div id="mobileErr" class="error">Enter a valid mobile number.</div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div>
+          <label for="email">Email (for invoice/notes)</label>
+          <input id="email" name="email" type="email" placeholder="you@example.com" />
+        </div>
+        <div>
+          <label for="when">Preferred date & time</label>
+          <input id="when" name="when" type="datetime-local" />
+        </div>
+      </div>
+
+      <label for="address">Service address</label>
+      <input id="address" name="address" type="text" placeholder="123 Main St, Santa Maria, CA" />
+
+      <label for="notes">Job notes (optional)</label>
+      <textarea id="notes" name="notes" rows="3" placeholder="Gate code, pet on site, unit access…"></textarea>
+
+      <!-- Honeypot to discourage bots -->
+      <input type="text" id="company" name="company" style="position:absolute;left:-9999px;" tabindex="-1" aria-hidden="true" autocomplete="off" />
+
+      <div class="checkbox">
+        <input id="optOperational" name="optOperational" type="checkbox" />
+        <label for="optOperational">
+          I agree to receive <strong>operational texts</strong> from Cal Coast Refrigeration about my service, appointments, and account.
+          <div class="disclosures">Msg&data rates may apply. Frequency varies by activity. <span class="kbd">Reply STOP to opt out, HELP for help.</span> See <a href="/privacy" target="_blank" rel="noopener">Privacy</a> & <a href="/terms-sms" target="_blank" rel="noopener">SMS Terms</a>. I confirm I am the subscriber or customary user of this number and 18+.</div>
+        </label>
+      </div>
+
+      <div class="checkbox">
+        <input id="optMarketing" name="optMarketing" type="checkbox" />
+        <label for="optMarketing">
+          I agree to receive <strong>marketing/promotional texts</strong> from Cal Coast Refrigeration.
+          <div class="disclosures">Msg&data rates may apply. Frequency varies. <span class="kbd">Reply STOP to opt out, HELP for help.</span> <em>Consent is not a condition of purchase.</em> See <a href="/privacy" target="_blank" rel="noopener">Privacy</a> & <a href="/terms-sms" target="_blank" rel="noopener">SMS Terms</a>.</div>
+        </label>
+      </div>
+
+      <button id="submitBtn" type="submit" class="btn" disabled>Submit</button>
+      <div id="formErr" class="error">Please enter a valid mobile number and check at least one consent box.</div>
+      <div id="ok" class="success">Thanks! Your request was received. You’ll get a confirmation text if you opted in.</div>
+
+      <p class="muted" style="margin-top:14px;">Questions? Email <a href="mailto:admin@calcoastrefrigeration.com">admin@calcoastrefrigeration.com</a> or call <a href="tel:+18059281778">(805) 928‑1778</a>.</p>
+    </form>
+  </div>
+
+  <script>
+    (function(){
+      const phone = document.getElementById('mobile');
+      const ck1 = document.getElementById('optOperational');
+      const ck2 = document.getElementById('optMarketing');
+      const btn = document.getElementById('submitBtn');
+      const form = document.getElementById('optinForm');
+      const mobileErr = document.getElementById('mobileErr');
+      const formErr = document.getElementById('formErr');
+      const ok = document.getElementById('ok');
+
+      function validPhone(v){
+        if(!v) return false;
+        // Strip non-digits, accept 10-digit US/Canada numbers, optionally with leading 1
+        const digits = (v+"").replace(/\D/g, "");
+        if(digits.length === 11 && digits.startsWith("1")) return true;
+        if(digits.length === 10) return true;
+        return false;
+      }
+
+      function toggle(){
+        const anyChecked = ck1.checked || ck2.checked;
+        const okPhone = validPhone(phone.value);
+        btn.disabled = !(anyChecked && okPhone);
+        btn.classList.toggle('enabled', anyChecked && okPhone);
+        mobileErr.style.display = okPhone ? 'none' : 'block';
+        formErr.style.display = 'none';
+      }
+
+      phone.addEventListener('input', toggle);
+      ck1.addEventListener('change', toggle);
+      ck2.addEventListener('change', toggle);
+
+      form.addEventListener('submit', function(e){
+        e.preventDefault();
+        const anyChecked = ck1.checked || ck2.checked;
+        const okPhone = validPhone(phone.value);
+        if(!anyChecked || !okPhone){
+          formErr.style.display = 'block';
+          return;
+        }
+        // Demo only: show success. In production, POST to your backend/Power Automate with consent fields.
+        ok.style.display = 'block';
+        formErr.style.display = 'none';
+      });
+
+      // Initial state
+      toggle();
+    })();
+  </script>
+</body>
+</html>
