@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Cal Coast Refrigeration – QBO Connector EULA</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    :root { --brand:#0078d4; }
+    body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;line-height:1.6;margin:0;color:#16202a;background:#f7f9fb}
+    header{background:var(--brand);color:#fff;padding:28px 20px}
+    main{max-width:900px;margin:0 auto;padding:28px 20px}
+    h1{margin:0 0 6px}
+    h2{margin-top:28px}
+    a{color:var(--brand)}
+    .muted{color:#5b6b7a}
+    footer{max-width:900px;margin:24px auto 48px;padding:0 20px;color:#5b6b7a}
+    code{background:#eef3f8;padding:2px 6px;border-radius:6px}
+  </style>
+</head>
+<body>
+<header>
+  <h1>QBO Connector – End-User License Agreement (EULA)</h1>
+  <div class="muted">Cal Coast Refrigeration (“CCR”)</div>
+</header>
+<main>
+  <p class="muted">Last updated: 2025-09-15</p>
+
+  <h2>1) Acceptance</h2>
+  <p>This EULA governs use of CCR’s internal QuickBooks Online (“QBO”) Connector that syncs QBO data with CCR’s Azure SQL–based ERP. By accessing or using the Connector, you agree to these terms.</p>
+
+  <h2>2) License & Authorized Users</h2>
+  <p>CCR grants a non-transferable, non-exclusive license to use the Connector solely for CCR business purposes. Only CCR employees and authorized contractors may use it.</p>
+
+  <h2>3) Purpose & Scope</h2>
+  <p>The Connector reads and writes selected QBO accounting data (e.g., Customers, Invoices, Payments) via the <code>com.intuit.quickbooks.accounting</code> scope to support dispatching, billing, and reporting.</p>
+
+  <h2>4) Data Protection & Security</h2>
+  <p>QBO access is authenticated with OAuth 2.0. Data in transit uses HTTPS/TLS. Data at rest resides in CCR’s Microsoft Azure services with role-based access. Users must follow CCR security policies.</p>
+
+  <h2>5) Confidentiality</h2>
+  <p>All accounting data accessed through the Connector is CCR confidential information. You will not disclose it to third parties except as permitted by CCR policy or law.</p>
+
+  <h2>6) Restrictions</h2>
+  <ul>
+    <li>No reverse engineering, resale, or distribution.</li>
+    <li>No use outside CCR business or in violation of QBO/Intuit terms.</li>
+    <li>No attempts to circumvent security, rate limits, or access controls.</li>
+  </ul>
+
+  <h2>7) Support</h2>
+  <p>For issues or questions, contact <a href="mailto:apps@calcoastrefrigeration.com">apps@calcoastrefrigeration.com</a>.</p>
+
+  <h2>8) Termination & Disconnect</h2>
+  <p>CCR may suspend or terminate access at any time. You may disconnect the app in QBO (Apps → My Apps → select the app → Disconnect) or by visiting the <a href="qbo-connector-disconnect.html">Disconnect page</a>.</p>
+
+  <h2>9) Warranties & Liability</h2>
+  <p>Provided “as is” without warranties of any kind. To the maximum extent permitted by law, CCR is not liable for indirect or consequential damages arising from use of the Connector.</p>
+
+  <h2>10) Changes</h2>
+  <p>CCR may modify this EULA. Continued use after changes constitutes acceptance. Material changes will be communicated internally.</p>
+
+  <h2>11) Governing Law</h2>
+  <p>California law governs this EULA.</p>
+
+  <h2>12) Contact</h2>
+  <p>Email: <a href="mailto:apps@calcoastrefrigeration.com">apps@calcoastrefrigeration.com</a></p>
+</main>
+<footer>
+  © <span id="y"></span> Cal Coast Refrigeration. All rights reserved.
+</footer>
+<script>document.getElementById('y').textContent=new Date().getFullYear();</script>
+</body>
+</html>
